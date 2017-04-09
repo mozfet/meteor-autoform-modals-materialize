@@ -100,11 +100,13 @@ Template.afModal.events
 		Session.set 'cmFields', t.data.fields
 		Session.set 'cmOmitFields', t.data.omitFields
 		Session.set 'cmButtonHtml', html
-		Session.set 'cmTitle', t.data.title or html
+		Session.set 'cmTitle', t.data.title
 		Session.set 'cmTemplate', t.data.template
 		Session.set 'cmLabelClass', t.data.labelClass
 		Session.set 'cmInputColClass', t.data.inputColClass
 		Session.set 'cmPlaceholder', if t.data.placeholder is true then 'schemaLabel' else ''
+
+		console.log t
 
 		if not _.contains registeredAutoFormHooks, formId
 			AutoForm.addHooks formId,
@@ -157,6 +159,23 @@ Template.afModal.events
 			Session.set 'cmPrompt', 'Are you sure?'
 		else
 			Session.set 'cmPrompt', ''
+
+		# add modal to page container... not sure its safe though
+		modalParentQuerySize = $('#modalContainer').size()
+		console.log 'modalParentQuery size', modalParentQuerySize
+		if modalParentQuerySize == 0
+			containerQuery = $('.container')
+			console.log 'containerQuery', containerQuery
+			containerQuery.append '<div id="modalContainer"></div>'
+		modalParentQuery = $('#modalContainer')
+		modalParentQuery.empty()
+		modalParentNode = modalParentQuery[0]
+		console.log 'modalParentNode', modalParentNode
+		modalData = {
+			title: 'title'
+		}
+		Blaze.renderWithData Template.autoformModals, modalData, modalParentNode
+		console.log 'leanModal', $('#afModal')
 
 		$('#afModal').openModal
 			complete: ->
