@@ -2,13 +2,46 @@ registeredAutoFormHooks = ['cmForm']
 
 AutoForm.addHooks 'cmForm',
 	onSuccess: ->
-		$('#afModal').closeModal()
+		modalClose()
 		return
 
 collectionObj = (name) ->
 	name.split('.').reduce (o, x) ->
 		o[x]
 	, window
+
+#workaround for different modal apis
+modalClose = ->
+
+	#use poetic:materialize-scss openModal api (trailing materialize api)
+	if Package['poetic:materialize-scss']
+		console.log 'using poetic:materialize.modal close'
+		$('#afModal').modal 'close'
+
+	#else use materialize:materialize modal api
+	else if Package['materialize:materialize']
+		console.log 'using poetic:materialize.closeModal'
+		$('#afModal').closeModal()
+
+#workaround for different modal apis
+modalOpen = (complete) ->
+
+		#use poetic:materialize-scss openModal api (trailing materialize api)
+		if Package['poetic:materialize-scss']
+			console.log 'using poetic:materialize.openModal'
+			$('#afModal').openModal
+				complete: complete
+
+		#else use materialize:materialize modal api
+		else if Package['materialize:materialize']
+			console.log 'using materialize:materialize.modal'
+			$('#afModal').modal
+			  complete: complete
+			$('#afModal').modal	'open'
+
+		#else - warn that dependancies not found
+		else
+			console.warn 'could not find materialize:materialize nor poetic:materlialize-scss package'
 
 Template.autoformModals.events
 	'click button:not(.close)': () ->
@@ -23,7 +56,7 @@ Template.autoformModals.events
 				if e
 					alert 'Sorry, this could not be deleted.'
 				else
-					$('#afModal').closeModal()
+					modalClose()
 		return
 
 	'click [data-action="submit"]': (event, template) ->
@@ -33,7 +66,7 @@ Template.autoformModals.events
 
 	'click [data-action="cancel"]': (event, template) ->
 		event.preventDefault()
-		$('#afModal').closeModal()
+		modalClose
 		return
 
 helpers =
@@ -111,7 +144,7 @@ Template.afModal.events
 		if not _.contains registeredAutoFormHooks, formId
 			AutoForm.addHooks formId,
 				onSuccess: ->
-					$('#afModal').closeModal()
+					modalClose()
 					return
 
 			registeredAutoFormHooks.push formId
@@ -177,26 +210,31 @@ Template.afModal.events
 		Blaze.renderWithData Template.autoformModals, modalData, modalParentNode
 		console.log 'leanModal', $('#afModal')
 
-		$('#afModal').openModal
-			complete: ->
-				sessionKeys = [
-					'cmCollection',
-					'cmSchema',
-					'cmOperation',
-					'cmDoc',
-					'cmButtonHtml',
-					'cmFields',
-					'cmOmitFields',
-					'cmButtonContent',
-					'cmTitle',
-					'cmButtonClasses',
-					'cmPrompt',
-					'cmTemplate',
-					'cmLabelClass',
-					'cmInputColClass',
-					'cmPlaceholder'
-				]
-				delete Session.keys[key] for key in sessionKeys
-				return
+		#define session keys for deletion
+		sessionKeys = [
+			'cmCollection',
+			'cmSchema',
+			'cmOperation',
+			'cmDoc',
+			'cmButtonHtml',
+			'cmFields',
+			'cmOmitFields',
+			'cmButtonContent',
+			'cmTitle',
+			'cmButtonClasses',
+			'cmPrompt',
+			'cmTemplate',
+			'cmLabelClass',
+			'cmInputColClass',
+			'cmPlaceholder'
+		]
+
+		#define complete function
+		complete = ->
+			delete Session.keys[key] for key in sessionKeys
+			return
+
+		#open modal
+		modalOpen(complete)
 
 		return
