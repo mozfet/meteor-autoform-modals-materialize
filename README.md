@@ -8,7 +8,7 @@ Original code from **@yogiben**:
 
 ## Setup ##
 
-1. ```meteor a```
+1. ```meteor add mozfet:autoform-modals-materialize```
 2. Include the template in the layouts that will use the modals `{{> autoformModals}}`
 3. Use `afModal` template to create a button that will trigger the modal
 
