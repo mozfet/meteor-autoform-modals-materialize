@@ -1,3 +1,11 @@
+# 2.0.3 - 2.0.4
+
+Republish on atmosphere to sync dependency versions
+
+# ... 2.0.2
+
+Refactored, repackaged, upgraded, ect...
+
 # 0.0.8
 
 Fixing #6 by merging #7. Thanks @rwatts3
