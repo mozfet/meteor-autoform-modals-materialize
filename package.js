@@ -1,7 +1,7 @@
 Package.describe({
     name: 'mozfet:autoform-modals-materialize',
     summary: "Create, update and delete collections with materialize modals",
-    version: "2.0.7",
+    version: "2.0.8",
     git: "https://github.com/mozfet/meteor-autoform-modals-materialize",
 });
 
@@ -17,7 +17,7 @@ Package.on_use(function(api) {
         'ui',
         'blaze-html-templates',
         'aldeed:autoform@6.0.0',
-        'mozfet:autoform-materialize@2.0.7',
+        'mozfet:autoform-materialize@2.0.8',
         'raix:handlebar-helpers@0.2.4',
         'mpowaga:string-template@0.1.0',
     ], 'client');
@@ -26,7 +26,7 @@ Package.on_use(function(api) {
 
     api.imply([
         'aldeed:autoform@6.0.0',
-        'mozfet:autoform-materialize@2.0.7',
+        'mozfet:autoform-materialize@2.0.8',
     ]);
 
     api.add_files('lib/client/modals.html', 'client');
