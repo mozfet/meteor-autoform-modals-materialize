@@ -26,7 +26,7 @@ Package.on_use(function(api) {
 
     api.imply([
         'aldeed:autoform@6.0.0',
-        'mozfet:autoform-materialize@2.0.5',
+        'mozfet:autoform-materialize@2.0.6',
     ]);
 
     api.add_files('lib/client/modals.html', 'client');
