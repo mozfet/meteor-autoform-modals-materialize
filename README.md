@@ -1,10 +1,7 @@
 Meteor [Autoform](https://github.com/aldeed/meteor-autoform) Modals with Materialize
 ======================
 
-Adds materialize modals to insert/update/remove docs from Meteor collections.
-
-Original code from **@yogiben**:
-[yogiben:autoform-modals](https://github.com/yogiben/meteor-autoform-modals)
+Materialize modals to insert/update/remove docs from Meteor collections using AutoForm.
 
 ## Setup ##
 
@@ -12,6 +9,12 @@ Original code from **@yogiben**:
 2. Include the template in the layouts that will use the modals `{{> autoformModals}}`
 3. Use `afModal` template to create a button that will trigger the modal
 
+## This package is part of a suite
+[mozfet:meteor-autoform-materialize](https://github.com/mozfet/meteor-autoform-materialize)
+[mozfet:meteor-autoform-modals-materialize](https://github.com/mozfet/meteor-autoform-modals-materialize)
+[mozfet:meteor-autoform-nouislider](https://github.com/mozfet/meteor-autoform-nouislider)
+[mozfet:meteor-autoform-medium](https://github.com/mozfet/meteor-autoform-medium)
+[mozfet:meteor-autoform-materialize-playground](https://github.com/mozfet/meteor-autoform-materialize-playground)
 
 ##Example Button Markup##
 ### Insert Example ###
