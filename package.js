@@ -1,7 +1,7 @@
 Package.describe({
     name: 'mozfet:autoform-modals-materialize',
     summary: "Create, update and delete collections with materialize modals",
-    version: "2.0.10",
+    version: "2.0.11",
     git: "https://github.com/mozfet/meteor-autoform-modals-materialize",
 });
 
