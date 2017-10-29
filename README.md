@@ -1,5 +1,11 @@
-Meteor [Autoform](https://github.com/aldeed/meteor-autoform) Modals with Materialize
+DEPRICATED! Meteor [Autoform](https://github.com/aldeed/meteor-autoform) Modals with Materialize
 ======================
+
+This package is no longer maintained. Do not use this package. Use [mozfet:meteor-autoform-modals](https://github.com/mozfet/meteor-autoform-materialize-modals) instead.
+
+.
+.
+.
 
 Materialize modals to insert/update/remove docs from Meteor collections using AutoForm.
 
